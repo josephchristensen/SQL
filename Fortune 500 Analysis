@@ -67,7 +67,7 @@ FROM fortune_companies
 GROUP BY industry
 HAVING total_employees>=100000;
 
-#Select all companies that offer at least 20 paid time off days and offered healthcare benefits.
+#Select all companies that offer at least 20 paid time off days and offer healthcare benefits.
 
 SELECT company_name, paid_time_off_days, healthcare_benefits
 FROM fortune_companies
