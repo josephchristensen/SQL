@@ -1,0 +1,44 @@
+# For this project, I downloaded Spotify data from Kaggle.
+# Next I created a table to insert Spotify data into.
+# Finally, I performed analytics on the data using SQL. 
+
+#Creating the table: 
+CREATE TABLE BIT_DB.Spotifydata (
+id integer PRIMARY KEY,
+artist_name varchar NOT NULL,
+track_name varchar NOT NULL,
+track_id varchar NOT NULL,
+popularity integer NOT NULL,
+danceability decimal(4,3) NOT NULL,
+energy decimal(4,3) NOT NULL,
+key integer NOT NULL,
+loudness decimal(5,3) NOT NULL,
+mode integer NOT NULL,
+speechiness decimal(5,4) NOT NULL,
+acousticness decimal(6,5) NOT NULL,
+instrumentalness text NOT NULL,
+liveness decimal(5,4) NOT NULL,
+valence decimal(4,3) NOT NULL,
+tempo decimal(6,3) NOT NULL,
+duration_ms integer NOT NULL,
+time_signature integer NOT NULL 
+)
+
+#Then I inserted the Spotify Data .csv into the table.
+
+#After creating the Spotify Data table I thought of some questions I could answer you the data available to me.
+
+#What artist has the most popular song and what is the name of that song?
+
+SELECT artist_name, track_name, popularity
+FROM BIT_DB.Spotifydata
+LIMIT 1;
+
+#What are the top five artists with the highest average song popularity and average song danceability of at least 65?
+
+SELECT artist_name AS artist, ROUND(AVG(popularity),1) AS avg_popularity, ROUND(AVG(danceability*100),1) AS avg_danceability
+FROM BIT_DB.Spotifydata
+GROUP BY artist_name
+HAVING avg_popularity >=90
+AND avg_danceability >=65
+LIMIT 5;
